@@ -15,17 +15,10 @@ function LunchCheckController ($scope) {
 		var error = true;
 		
 		if ($scope.lunch) {
-
 			var arr = $scope.lunch.split(',');
 			arr = arr.filter(function(n){ return n != "" });
-
-			if (arr.length > 3) {
-				message = "Too much!";
-			} else {
-				message = "Enjoy!";
-				error = false;
-			}
-
+			message = (arr.length > 3) ? "Too much!":"Enjoy!";
+			error = false;
 		}
 
 		$scope.message = message;
