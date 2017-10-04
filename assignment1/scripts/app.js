@@ -18,7 +18,7 @@ function LunchCheckController ($scope) {
 			var arr = $scope.lunch.split(',');
 			arr = arr.filter(function(n){ return n != "" });
 			message = (arr.length > 3) ? "Too much!":"Enjoy!";
-			error = false;
+			error = !error;
 		}
 
 		$scope.message = message;
