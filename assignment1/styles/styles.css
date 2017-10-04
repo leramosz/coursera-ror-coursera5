@@ -1,0 +1,5 @@
+.message { font-size: 1.3em; font-weight: bold; }
+.message-error { color: red; }
+.message-success { color: green; }
+.input-error { border: 2px solid red; }
+.input-success { border: 2px solid green; }
