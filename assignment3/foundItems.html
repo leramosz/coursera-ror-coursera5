@@ -1,0 +1,22 @@
+<table class="table table-hover" ng-if="searched">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Short Name</th>
+      <th>Description</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody ng-repeat="item in items">
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.short_name }}</td>
+      <td>{{ item.description }}</td>
+      <td><button ng-click="onRemove({index: $index});"">Don't want this one!</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<br><br><br>
+<div class="loader" ng-if="inSearch"></div>
+<div class="error" ng-if="nothingFound">Nothing found!</div>
