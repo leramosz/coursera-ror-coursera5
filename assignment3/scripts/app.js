@@ -34,7 +34,7 @@ function NarrowItDownController(MenuSearchService) {
 	}
 
 	NarrowItDown.removeItem = function (index) {
-		NarrowItDown.foundItems.splice(index, 1);
+		MenuSearchService.removeItem(index);
 		NarrowItDown.searched = NarrowItDown.foundItems.length > 0
 	}
 
@@ -44,6 +44,8 @@ MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 function MenuSearchService($http, ApiBasePath) {
 	var service = this;
 
+	var foundItems = [];
+
 	service.getMatchedMenuItems = function (searchTerm) {
 
 		return $http({
@@ -52,7 +54,7 @@ function MenuSearchService($http, ApiBasePath) {
 				}).then(function (response) {
 	   
 	   				if(searchTerm) {
-				     	var foundItems = [];
+				     	
 						var regex = new RegExp(searchTerm, "gi");
 					    response.data.menu_items.forEach(function(item) {
 					    	if(item.description.match(regex) !== null) {
@@ -67,6 +69,10 @@ function MenuSearchService($http, ApiBasePath) {
 
 			    });
 
+	}
+
+	service.removeItem = function (index) {
+		foundItems.splice(index, 1);
 	}
 
 }
