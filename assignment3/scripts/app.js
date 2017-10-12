@@ -44,7 +44,7 @@ MenuSearchService.$inject = ['$http', 'ApiBasePath'];
 function MenuSearchService($http, ApiBasePath) {
 	var service = this;
 
-	var foundItems = [];
+	var foundItems;
 
 	service.getMatchedMenuItems = function (searchTerm) {
 
@@ -54,7 +54,7 @@ function MenuSearchService($http, ApiBasePath) {
 				}).then(function (response) {
 	   
 	   				if(searchTerm) {
-				     	
+				     	foundItems = [];
 						var regex = new RegExp(searchTerm, "gi");
 					    response.data.menu_items.forEach(function(item) {
 					    	if(item.description.match(regex) !== null) {
