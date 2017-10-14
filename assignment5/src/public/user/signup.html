@@ -1,0 +1,72 @@
+<div class="container" ng-controller="SignUpController as reg">
+  <h2 id="menu-categories-title" class="text-center">Sign Up</h2>
+  <form name='regForm' novalidate>
+	  <div class="form-group">
+	    <input type="text" class="form-control" placeholder="First name" 
+	           autocomplete="off" 
+	    	   name="first_name" 
+	    	   ng-model="reg.user.first_name"
+	    	   ng-disabled="reg.completed"
+	    	   required>
+	   	<span ng-if="regForm.first_name.$error.required && regForm.first_name.$touched">
+	        Enter your First Name
+        </span>
+	  </div>
+	  <div class="form-group">
+	    <input type="text" class="form-control" placeholder="Last name" 
+	           autocomplete="off"  
+	    	   name="last_name"
+	    	   ng-model="reg.user.last_name"
+	    	   ng-disabled="reg.completed"
+	    	   required>
+	    <span ng-if="regForm.last_name.$error.required && regForm.last_name.$touched">
+	        Enter your Last Name
+        </span>
+	  </div>
+	  <div class="form-group">
+	    <input type="text" class="form-control" placeholder="Email address (user@domain.com)" 		   autocomplete="off"  
+	    	   name="email" 
+	    	   ng-model="reg.user.email"
+	    	   ng-disabled="reg.completed"
+	    	   required
+	    	   pattern="(^(([^<>()\[\]\\.,;:\s@'']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$)">
+	    <span ng-if="regForm.email.$invalid && regForm.email.$touched">
+	        Must be a valid email address: user@domain.com
+        </span>
+	  </div>
+	  <div class="form-group">
+	    <input type="text" class="form-control" placeholder="Phone (###-###-####)"
+	           autocomplete="off" 
+	           name="phone" 
+	           ng-model="reg.user.phone"
+	           ng-disabled="reg.completed"
+	           required 
+               pattern="(\d{3})-(\d{3})-(\d{4})">
+        <span ng-if="regForm.phone.$invalid && regForm.phone.$touched">
+            Must be in the format: ###-###-####.
+        </span>
+	  </div>
+	  <div class="form-group">
+	  	<input type="text" class="form-control" placeholder="Favorite dish menu number"
+	           autocomplete="off" 
+	           name="menu_number" 
+	           ng-model="reg.user.menu_number"
+	           ng-disabled="reg.completed"
+	           ng-keyup="reg.cleanCustomValidator()"
+	           ng-class="{'custom-invalid' : reg.dishnumberinvalid}"
+	           required>
+	    <span ng-if="regForm.menu_number.$error.required && regForm.menu_number.$touched">
+	        Enter your favorite dish menu number
+        </span>
+        <span ng-if="reg.dishnumberinvalid">
+	        No such menu number exists
+        </span>
+	  </div>
+	  <button type="submit" class="btn btn-default" 
+	  		   ng-disabled="regForm.$invalid || reg.completed"
+	  		   ng-click="reg.submit()">
+	  		Submit
+	  </button>
+  </form>
+  <div id="info" ng-if="reg.completed">Your information has been saved</div>
+</div>

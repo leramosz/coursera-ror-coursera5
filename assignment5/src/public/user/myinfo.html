@@ -1,0 +1,19 @@
+<div class="container">
+  <h2 id="menu-categories-title" class="text-center">My Info</h2>
+  <div class="text-center myInfo" ng-if='!myInfoCtrl.myInfo'>
+    Not Signed Up Yet. <a ui-sref="public.signup">Sign up Now!</a>
+  </div>
+  <ul ng-if='myInfoCtrl.myInfo'>
+  	<li>Name: {{myInfoCtrl.myInfo.first_name}} {{myInfoCtrl.myInfo.last_name}}</li>
+  	<li>Email Address: {{myInfoCtrl.myInfo.email}}</li>
+  	<li>Phone: {{myInfoCtrl.myInfo.phone}}</li>
+  	<li>
+  		Favorite Dish: {{myInfoCtrl.myInfo.menu_number | uppercase}}
+  		<ul>
+  			<li>Dish Name: {{myInfoCtrl.myInfo.dish.name}}</li>
+  			<li>Dish Description: {{myInfoCtrl.myInfo.dish.description}}</li>
+  			<img src="https://www.davidchuschinabistro.com/images/{{myInfoCtrl.myInfo.dish.short_name}}.jpg">
+  		</ul>
+  	</li>
+  </ul>
+</div>
